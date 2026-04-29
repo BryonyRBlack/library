@@ -25,4 +25,14 @@ public class Customers extends User {
     public void setAvailable(Boolean available) {
         isAvailable = available;
     }
+
+    public static String youHaveBorrowed(){
+        System.out.println("What do you have borrowed");
+        return scanner.nextLine();
+    }
+
+    public static Boolean availability(){
+        System.out.println("What book are you interested in?");
+        return scanner.nextBoolean();
+    }
 }
