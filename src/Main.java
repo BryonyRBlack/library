@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         User user = new User(User.inputId(), User.inputUserName(), User.inputPassword());
+        System.out.println("Hello " + user.getName() + ". Please "+ User.inputUserType());
 
     }
 }

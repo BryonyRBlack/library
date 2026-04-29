@@ -54,7 +54,7 @@ public class User {
         return scanner.nextLine();
     }
 
-    public String inputUserType() {
+    public static String inputUserType() {
         System.out.println("Please confirm if Admin or Customer");
         String userType = scanner.nextLine();
         if (userType.equals("Admin")) {

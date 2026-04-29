@@ -33,9 +33,9 @@ public class Admin extends User{
         return scanner.nextLine();
     }
 
-    public static int howManyTimesLoaned(){
+    public static String howManyTimesLoaned(){
         System.out.println("What book do you want to know?");
-        return scanner.nextInt();
+        return scanner.nextLine();
     }
 
 
