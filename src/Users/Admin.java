@@ -28,5 +28,15 @@ public class Admin extends User{
         this.numOfTimesLoaned = numOfTimesLoaned;
     }
 
+    public static String confirmLoan(){
+        System.out.println("How many books are loaned out");
+        return scanner.nextLine();
+    }
+
+    public static int howManyTimesLoaned(){
+        System.out.println("What book do you want to know?");
+        return scanner.nextInt();
+    }
+
 
 }
