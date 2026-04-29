@@ -9,4 +9,20 @@ public class Admin extends User{
         this.onLoan = onLoan;
         this.numOfTimesLoaned = numOfTimesLoaned;
     }
+
+    public String getOnLoan() {
+        return onLoan;
+    }
+
+    public void setOnLoan(String onLoan) {
+        this.onLoan = onLoan;
+    }
+
+    public int getNumOfTimesLoaned() {
+        return numOfTimesLoaned;
+    }
+
+    public void setNumOfTimesLoaned(int numOfTimesLoaned) {
+        this.numOfTimesLoaned = numOfTimesLoaned;
+    }
 }
