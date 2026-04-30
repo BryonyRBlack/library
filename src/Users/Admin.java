@@ -30,7 +30,7 @@ public class Admin extends User{
 
     public static String confirmLoan(){
         System.out.println("How many books are loaned out");
-        return scanner.nextLine();
+        return UserUtils.loanedOut();
     }
 
     public static String howManyTimesLoaned(){
