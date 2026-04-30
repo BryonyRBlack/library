@@ -5,6 +5,8 @@ import com.nology.library.Users.Admin;
 import com.nology.library.Users.Customers;
 
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import com.nology.library.Users.User;
 import com.opencsv.CSVReader;
@@ -18,6 +20,7 @@ import java.io.FileWriter;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter 1 to create a new account, or 2 to log into an existing account");
             int existStatus = scanner.nextInt();
