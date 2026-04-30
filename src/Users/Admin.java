@@ -35,7 +35,7 @@ public class Admin extends User{
 
     public static String howManyTimesLoaned(){
         System.out.println("What book do you want to know?");
-        return scanner.nextLine();
+        return " ";
     }
 
 
