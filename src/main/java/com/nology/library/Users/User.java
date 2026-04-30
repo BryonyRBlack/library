@@ -44,7 +44,7 @@ public class User {
 
     public static int inputId(){
         System.out.println("Please enter your ID");
-        return scanner.nextInt();
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public static String inputUserName() {

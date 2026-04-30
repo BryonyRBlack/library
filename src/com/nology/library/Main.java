@@ -3,8 +3,11 @@ package com.nology.library;
 import com.nology.library.Users.User;
 import com.nology.library.Users.Admin;
 import com.nology.library.Users.Customers;
+
+import java.io.FileReader;
 import java.util.Scanner;
 import com.nology.library.Users.User;
+import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
 import java.io.FileWriter;
@@ -35,6 +38,28 @@ public class Main {
                 try (CSVWriter writer = new CSVWriter(new FileWriter("userDatabase.csv", true))) {
                     writer.writeNext(row);
                 } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }else{
+                User user = new User (User.inputId(), User.inputUserName(), User.inputPassword());
+                String newName = user.getName();
+                String newPassword = user.getPassword();
+                int newId = user.getId();
+                boolean logIn = false;
+
+                try (CSVReader reader = new CSVReader(new FileReader("userDatabade.csv"))) {
+                    String[] row;
+                    reader.readNext();
+
+                    while ((row = reader.readNext()) != null){
+                        String existingUsername = row[1];
+                        String existingPassword = row[2];
+                        if (existingUsername.equalsIgnoreCase(newName) && existingPassword.equals(newPassword)){
+                            logIn = true;
+                            break;
+                        }
+                    }
+                } catch (Exception e){
                     e.printStackTrace();
                 }
             }
