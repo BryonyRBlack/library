@@ -46,8 +46,9 @@ public class Main {
                 String newPassword = user.getPassword();
                 int newId = user.getId();
                 boolean logIn = false;
+                String adminStatus = null;
 
-                try (CSVReader reader = new CSVReader(new FileReader("userDatabade.csv"))) {
+                try (CSVReader reader = new CSVReader(new FileReader("userDatabase.csv"))) {
                     String[] row;
                     reader.readNext();
 
@@ -55,12 +56,19 @@ public class Main {
                         String existingUsername = row[1];
                         String existingPassword = row[2];
                         if (existingUsername.equalsIgnoreCase(newName) && existingPassword.equals(newPassword)){
+                            adminStatus = row[3];
                             logIn = true;
                             break;
                         }
                     }
                 } catch (Exception e){
                     e.printStackTrace();
+                } if (logIn) {
+                    if(adminStatus.equalsIgnoreCase("true")) {
+                        Admin.Admin();
+                    }else{
+                        Customers.Customer();
+                    }
                 }
             }
         }

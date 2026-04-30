@@ -36,5 +36,15 @@ public class Admin extends User{
         return " ";
     }
 
+    public static void Admin() {
+        System.out.println("Please answer 1 for all currently loaned out books, or 2 to get the history of a particular book");
+        int adminAnswer = scanner.nextInt();
+        if (adminAnswer == 1) {
+            Admin.confirmLoan();
+        } else if (adminAnswer == 2) {
+            Admin.howManyTimesLoaned();
+        }
+    }
+
 
 }

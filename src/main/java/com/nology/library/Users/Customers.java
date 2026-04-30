@@ -32,6 +32,16 @@ public class Customers extends User {
         isAvailable = available;
     }
 
+    public static void Customer() {
+        System.out.println("Please answer 1 to know what books you currently have loaned out, or 2 to check the availabitily of a book");
+        int customerAnswer = scanner.nextInt();
+        if (customerAnswer == 1){
+            Customers.youHaveBorrowed();
+        } else if (customerAnswer == 2) {
+            Customers.availability();
+        }
+    }
+
     public static String youHaveBorrowed(){
         System.out.println("What do you have borrowed");
         return scanner.nextLine();
