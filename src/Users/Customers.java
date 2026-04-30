@@ -1,8 +1,10 @@
 package Users;
 
 import com.opencsv.CSVReader;
+import com.opencsv.CSVWriter;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 
 public class Customers extends User {
     private String haveLoanedOut;
@@ -59,6 +61,34 @@ public class Customers extends User {
             System.out.println("Sorry, this book is not available");
         }else{
             System.out.println("This book is available");
+            System.out.println("Do you want to borrow this book?");
+            String borrowing = scanner.nextLine();
+
+            if (borrowing.equalsIgnoreCase("yes")) {
+                boolean bookIsAvaialbe = false;
+
+                try (
+                        CSVReader reader2 = new CSVReader(new FileReader("books.csv"));
+                        CSVWriter writer = new CSVWriter(new FileWriter("booksLoandOut.csv", true))
+                        ) {
+                    String [] row;
+
+                    while ((row = reader2.readNext()) != null) {
+                        if (row.length > 0 && row[1].equalsIgnoreCase(bookName.trim())) {
+                                writer.writeNext(row);
+                                bookIsAvaialbe = true;
+
+                            System.out.println("You have borrowed this book");
+                            break;
+
+                        }
+                    } if (!bookIsAvaialbe) {
+                        System.out.println("We do not have this book");
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }
