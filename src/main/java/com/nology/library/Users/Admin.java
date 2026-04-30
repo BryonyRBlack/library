@@ -1,6 +1,4 @@
-package Users;
-import java.io.InputStream;
-import java.util.Scanner;
+package com.nology.library.Users;
 
 public class Admin extends User{
     private String onLoan;

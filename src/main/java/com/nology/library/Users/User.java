@@ -1,5 +1,8 @@
-package Users;
+package com.nology.library.Users;
 
+import com.opencsv.CSVWriter;
+
+import java.io.FileWriter;
 import java.util.Scanner;
 
 public class User {
@@ -53,6 +56,8 @@ public class User {
         System.out.println("Please enter your password");
         return scanner.nextLine();
     }
+
+
 
     public static String inputUserType() {
         System.out.println("Please confirm if Admin or Customer");
