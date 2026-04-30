@@ -57,28 +57,4 @@ public class User {
         return scanner.nextLine();
     }
 
-
-
-    public static String inputUserType() {
-        System.out.println("Please confirm if Admin or Customer");
-        String userType = scanner.nextLine();
-        System.out.println("Please answer 1 for all currently loaned out books, or 2 to get the history of a particular book");
-        int adminAnswer = scanner.nextInt();
-        if (adminAnswer == 1) {
-            Admin.confirmLoan();
-        } else if (adminAnswer == 2) {
-            Admin.howManyTimesLoaned();
-        } else if (userType.equals("Customer")) {
-            System.out.println("Please answer 1 to know what books you currently have loaned out, or 2 to check the availability of a book");
-            int customerAnswer = scanner.nextInt();
-            if (customerAnswer == 1){
-                Customers.youHaveBorrowed();
-            } else if (customerAnswer == 2) {
-                Customers.availability();
-            }
-        } else {
-            System.out.println("Please confirm if Admin or Customer");
-        }return userType;
-    }
-
 }
