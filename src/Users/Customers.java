@@ -1,5 +1,9 @@
 package Users;
 
+import com.opencsv.CSVReader;
+
+import java.io.FileReader;
+
 public class Customers extends User {
     private String haveLoanedOut;
     private Boolean isAvailable;
@@ -31,8 +35,30 @@ public class Customers extends User {
         return scanner.nextLine();
     }
 
-    public static Boolean availability(){
+    public static void availability(){
         System.out.println("What book are you interested in?");
-        return scanner.nextBoolean();
+        scanner.nextLine();
+        String bookName = scanner.nextLine();
+        boolean found = false;
+
+        try (CSVReader reader = new CSVReader(new FileReader("booksLoandOut.csv"))){
+            String [] row;
+
+            while ((row = reader.readNext()) != null){
+                for (String cell : row) {
+                    if (cell.equals(bookName)) {
+                        found = true;
+                        break;
+                    }
+                } if (found) break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (found) {
+            System.out.println("Sorry, this book is not available");
+        }else{
+            System.out.println("This book is available");
+        }
     }
 }
