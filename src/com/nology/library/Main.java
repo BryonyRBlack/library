@@ -68,7 +68,7 @@ public class Main {
                     e.printStackTrace();
                 } if (logIn) {
                     if(adminStatus.equalsIgnoreCase("true")) {
-                        Admin.Admin();
+                        Admin.userIsAdmin();
                     }else{
                         Customers.Customer();
                     }
