@@ -3,8 +3,11 @@ package com.nology.library.Users;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
+
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Customers extends User {
     private String haveLoanedOut;
@@ -47,6 +50,43 @@ public class Customers extends User {
         return scanner.nextLine();
     }
 
+    public static void incrementBookCount(String bookTitle) {
+        List<String[]> updatedData = new ArrayList<>();
+        try (CSVReader reader = new CSVReader(new FileReader("books.csv"))) {
+            String[] row;
+            boolean isHeader = true;
+
+            while ((row = reader.readNext()) != null) {
+
+                if (isHeader) {
+                    updatedData.add(row);
+                    isHeader = false;
+                    continue;
+                }
+
+                if (row.length > 6 && row[1].equalsIgnoreCase(bookTitle.trim())) {
+
+                    int count = 0;
+
+                    try {
+                        count = Integer.parseInt(row[6]);
+                    } catch (Exception e) {
+                        count = 0;
+                    }
+                    count++;
+                    row[6] = String.valueOf(count);
+                }
+                updatedData.add(row);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }try (CSVWriter writer = new CSVWriter(new FileWriter("books.csv"))) {
+            writer.writeAll(updatedData);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void availability(){
         System.out.println("What book are you interested in?");
         scanner.nextLine();
@@ -80,7 +120,8 @@ public class Customers extends User {
                 try (
                         CSVReader reader2 = new CSVReader(new FileReader("books.csv"));
                         CSVWriter writer = new CSVWriter(new FileWriter("booksLoandOut.csv", true))
-                        ) {
+                        )
+                {
                     String [] row;
 
                     while ((row = reader2.readNext()) != null) {
@@ -97,7 +138,9 @@ public class Customers extends User {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                }
+                }if (bookIsAvaialbe) {
+                    incrementBookCount(bookName);
+            }
             }
         }
     }
