@@ -2,3 +2,4 @@ id, name, password, admin status, books loaned out
 "7","BB","BB","true"
 "5","LL","LL","false"
 "7","BB","BB","true"
+"7","AA","AA","true"

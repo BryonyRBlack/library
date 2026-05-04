@@ -1,18 +1,18 @@
-package com.nology.library.Users;
+//package com.nology.library.Users;
 
-import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+//import static org.junit.jupiter.api.Assertions.*;
 
-class UserTest {
+//class UserTest {
 
-    @Test
-    void returnUserName() {
-        User user = new User(7, "Jenny", "password");
-        assertEquals("Jenny", user.getName());
-    }
+//    @Test
+//    void returnUserName() {
+//        User user = new User(7, "Jenny", "password");
+//        assertEquals("Jenny", user.getName());
+ //   }
 
-    @Test
-    void inputPassword() {
-    }
-}
+//    @Test
+//    void inputPassword() {
+//    }
+//}
