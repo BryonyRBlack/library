@@ -9,6 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import static org.apache.commons.lang3.BooleanUtils.isTrue;
+
 public class UserUtils {
 
     static Scanner scanner = new Scanner(System.in);
@@ -64,6 +66,15 @@ public class UserUtils {
             writer.writeNext(row);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        System.out.println("Would you like to log in?");
+        scanner.nextLine();
+        String answer = scanner.nextLine();
+        String state = "yes";
+        if ((answer.equals(state))){
+            logIn();
+        }else{
+            System.out.println("Goodbye!");
         }
     }
 
