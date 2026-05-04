@@ -45,7 +45,7 @@ public class UserUtils {
             if (adminStatus.equalsIgnoreCase("true")) {
                 userIsAdmin();
             } else {
-                Customer();
+                Customer(user.getName());
             }
         }
     }
@@ -156,13 +156,13 @@ public class UserUtils {
         }
     }
 
-    public static void Customer() {
+    public static void Customer(String userName) {
         System.out.println("Please answer 1 to know what books you currently have loaned out, or 2 to check the availabitily of a book");
         int customerAnswer = scanner.nextInt();
         if (customerAnswer == 1){
             youHaveBorrowed();
         } else if (customerAnswer == 2) {
-            availability();
+            availability(userName);
         }
     }
 
@@ -171,8 +171,34 @@ public class UserUtils {
         return scanner.nextLine();
     }
 
-    public static void incrementBookCount(String bookTitle) {
+    public static void addBookToUser(String userName, String bookTitle){
         List<String[]> updatedData = new ArrayList<>();
+        try (CSVReader reader = new CSVReader(new FileReader("userDatabase.csv"))) {
+            String[] row;
+            while((row = reader.readNext()) != null) {
+                if (row.length > 4 && row[1].trim().equalsIgnoreCase(userName.trim())) {
+                    String existing = row[4];
+                    if (existing == null || existing.isEmpty()) {
+                        row[4] = bookTitle;
+                    }else {
+                        row[4] = existing + ", " + bookTitle;
+                    }
+
+                }
+                updatedData.add(row);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }try (CSVWriter writer = new CSVWriter(new FileWriter("userDatabase.csv"))) {
+            writer.writeAll(updatedData);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void incrementBookCount(String bookTitle, String userName) {
+        List<String[]> updatedData = new ArrayList<>();
+        String updatedValue = null;
         try (CSVReader reader = new CSVReader(new FileReader("books.csv"))) {
             String[] row;
             boolean isHeader = true;
@@ -194,8 +220,9 @@ public class UserUtils {
                     } catch (Exception e) {
                         count = 0;
                     }
-                    count++;
+                    ++count;
                     row[6] = String.valueOf(count);
+                    updatedValue = row[1];
                 }
                 updatedData.add(row);
             }
@@ -205,10 +232,12 @@ public class UserUtils {
             writer.writeAll(updatedData);
         } catch (Exception e) {
             e.printStackTrace();
+        } if (updatedValue != null) {
+            addBookToUser(userName, updatedValue);
         }
     }
 
-    public static void availability(){
+    public static void availability(String userName){
         System.out.println("What book are you interested in?");
         scanner.nextLine();
         String bookName = scanner.nextLine();
@@ -260,7 +289,7 @@ public class UserUtils {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }if (bookIsAvaialbe) {
-                    incrementBookCount(bookName);
+                    incrementBookCount(bookName, userName);
                 }
             }
         }
