@@ -56,10 +56,10 @@ public class UserUtils {
             reader.readNext();
 
             while ((row = reader.readNext()) != null) {
-                String existingUsername = row[1];
-                String existingPassword = row[2];
+                String existingUsername = row[0];
+                String existingPassword = row[1];
                 if (existingUsername.equalsIgnoreCase(newName) && existingPassword.equals(newPassword)) {
-                    adminStatus = row[3];
+                    adminStatus = row[2];
                     logIn = true;
                     break;
                 }
@@ -196,8 +196,8 @@ public class UserUtils {
                     isHeader = false;
                     continue;
                 }
-                if (row.length > 4 && row[1].equalsIgnoreCase(userName.trim())) {
-                        return row[4];
+                if (row.length > 3 && row[0].equalsIgnoreCase(userName.trim())) {
+                        return row[3];
                 }
             }
         } catch (Exception e) {
@@ -218,12 +218,12 @@ public class UserUtils {
         try (CSVReader reader = new CSVReader(new FileReader("userDatabase.csv"))) {
             String[] row;
             while((row = reader.readNext()) != null) {
-                if (row.length > 4 && row[1].trim().equalsIgnoreCase(userName.trim())) {
-                    String existing = row[4];
+                if (row.length > 3 && row[0].trim().equalsIgnoreCase(userName.trim())) {
+                    String existing = row[3];
                     if (existing == null || existing.isEmpty()) {
-                        row[4] = bookTitle;
+                        row[3] = bookTitle;
                     }else {
-                        row[4] = existing + ", " + bookTitle;
+                        row[3] = existing + ", " + bookTitle;
                     }
 
                 }
