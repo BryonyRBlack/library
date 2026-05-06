@@ -1,4 +1,3 @@
-Number,Title,Author,Genre,SubGenre,Publisher
-1,Fundamentals of Wavelets,"Goswami, Jaideva",tech,signal_processing,Wiley
+Number,Title,Author,Genre,SubGenre,Publisher, LoanedOutTimes
 "16","Trial, The","Kafka, Frank","1","classic","Random House","8"
 "18","Data Mining Handbook","Nisbet, Robert","1","data_science","Apress","0"

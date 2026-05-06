@@ -120,7 +120,6 @@ public class UserUtils {
 
             System.out.println("\nData read from CSV file:");
             while ((nextLine = reader.readNext()) != null) {
-                System.out.println("Row " + rowNumber + ":");
                 for (int i = 0; i < nextLine.length; i++) {
                     System.out.println(" " + header[i] + ": " + nextLine[i]);
                 }
