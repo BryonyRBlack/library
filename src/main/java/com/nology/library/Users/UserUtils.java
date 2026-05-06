@@ -34,6 +34,14 @@ public class UserUtils {
         }catch (IOException | CsvValidationException e) {
             System.err.println("Error reading the CSV file: " + e.getMessage());
             e.printStackTrace();
+        }System.out.println("Please press 1 to log in, 2 to create account, or 3 to exit");
+        int answer = scanner.nextInt();
+        if (answer == 1){
+            logIn();
+        }else if (answer == 2){
+            signUp();
+        }else {
+            System.out.println("Goodbye!");
         }
     }
 
