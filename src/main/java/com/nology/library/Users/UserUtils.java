@@ -18,7 +18,6 @@ public class UserUtils {
     static Scanner scanner = new Scanner(System.in);
 
     public static void viewAllBooks(){
-        String allBooks = "books.csv";
         try (CSVReader reader = new CSVReader(new FileReader("books.csv"))){
             String[] header = reader.readNext();
             if (header != null) {
@@ -109,9 +108,8 @@ public class UserUtils {
         }
     }
 
-    public static String loanedOut() {
-        String booksCsv = "booksLoandOut.csv";
-        try(CSVReader reader = new CSVReader(new FileReader(booksCsv))) {
+    public static void loanedOut() {
+        try(CSVReader reader = new CSVReader(new FileReader("booksLoandOut.csv"))) {
             String[] header = reader.readNext();
             if (header != null) {
                 System.out.println("\nHeader: " + String.join(", ", header));
@@ -133,13 +131,8 @@ public class UserUtils {
             System.err.println("Error reading the CSV file: " + e.getMessage());
             e.printStackTrace();
         }
-        return booksCsv;
     }
 
-    public static String confirmLoan() {
-        System.out.println("How many books are loaned out");
-        return UserUtils.loanedOut();
-    }
 
 
     public static int getLoanCount(String bookTitle) {
@@ -179,7 +172,7 @@ public class UserUtils {
         System.out.println("Please answer 1 for all currently loaned out books, or 2 to get the history of a particular book");
         int adminAnswer = scanner.nextInt();
         if (adminAnswer == 1) {
-            confirmLoan();
+            loanedOut();
         } else if (adminAnswer == 2) {
             howManyTimesLoaned();
         }
