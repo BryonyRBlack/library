@@ -61,8 +61,9 @@ public class UserUtils {
         if (adminStatusQuery == 1) {
             adminStatus = true;
         }
+        String booksBorrowed = "";
 
-        String[] row = {String.valueOf(newId), newName, newPassword, adminStatus.toString()};
+        String[] row = {String.valueOf(newId), newName, newPassword, adminStatus.toString(), booksBorrowed};
 
         try (CSVWriter writer = new CSVWriter(new FileWriter("userDatabase.csv", true))) {
             writer.writeNext(row);

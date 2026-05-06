@@ -1,3 +1,4 @@
 "id"," name"," password"," admin status"," books loaned out"
-"7","BB","BB","true","0"
-"5","LL","LL","false","0, Trial, The, Data Mining Handbook"
+"7","BB","BB","true",""
+"5","LL","LL","false","Trial, The, Data Mining Handbook"
+"9","HH","HH","false",""
