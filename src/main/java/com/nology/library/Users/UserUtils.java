@@ -45,10 +45,9 @@ public class UserUtils {
     }
 
     public static void logIn() {
-        User user = new User(User.inputId(), User.inputUserName(), User.inputPassword());
+        User user = new User(User.inputUserName(), User.inputPassword());
         String newName = user.getName();
         String newPassword = user.getPassword();
-        int newId = user.getId();
         boolean logIn = false;
         String adminStatus = null;
 
@@ -78,11 +77,10 @@ public class UserUtils {
     }
 
     public static void signUp() {
-        User user = new User(User.inputId(), User.inputUserName(), User.inputPassword());
+        User user = new User(User.inputUserName(), User.inputPassword());
         System.out.println("Please enter 1 if admin, or 2 if a user");
         String newName = user.getName();
         String newPassword = user.getPassword();
-        int newId = user.getId();
         int adminStatusQuery = scanner.nextInt();
         Boolean adminStatus = false;
         if (adminStatusQuery == 1) {
@@ -90,7 +88,7 @@ public class UserUtils {
         }
         String booksBorrowed = "";
 
-        String[] row = {String.valueOf(newId), newName, newPassword, adminStatus.toString(), booksBorrowed};
+        String[] row = {newName, newPassword, adminStatus.toString(), booksBorrowed};
 
         try (CSVWriter writer = new CSVWriter(new FileWriter("userDatabase.csv", true))) {
             writer.writeNext(row);
