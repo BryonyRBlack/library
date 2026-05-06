@@ -23,19 +23,21 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter 1 to create a new account, or 2 to log into an existing account");
-            int existStatus = scanner.nextInt();
-            if (existStatus == 1) {
-                UserUtils.signUp();
-            }else{
-                UserUtils.logIn();
-                }
-            }
+        System.out.println("Please enter 1 to create a new account, 2 to log into an existing account, or 3 to view all books");
+        int existStatus = scanner.nextInt();
+        if (existStatus == 1) {
+            UserUtils.signUp();
+        } else if (existStatus == 2) {
+            UserUtils.logIn();
+        } else if (existStatus == 3) {
+            UserUtils.viewAllBooks();
         }
+    }
+}
 
         //User user = new User(User.inputId(), User.inputUserName(), User.inputPassword());
         //System.out.println("Hello " + user.getName() + ". Please "+ User.inputUserType());
 
 
 
-    
+
