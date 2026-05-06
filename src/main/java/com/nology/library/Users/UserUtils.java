@@ -181,15 +181,38 @@ public class UserUtils {
         System.out.println("Please answer 1 to know what books you currently have loaned out, or 2 to check the availabitily of a book");
         int customerAnswer = scanner.nextInt();
         if (customerAnswer == 1){
-            youHaveBorrowed();
+            youHaveBorrowed(userName);
         } else if (customerAnswer == 2) {
             availability(userName);
         }
     }
 
-    public static String youHaveBorrowed(){
+    public static String borrowedBook(String userName) {
+
+        try (CSVReader reader = new CSVReader(new FileReader("userDatabase.csv"))) {
+            String[] row;
+            boolean isHeader = true;
+
+            while ((row = reader.readNext()) != null) {
+                if (isHeader) {
+                    isHeader = false;
+                    continue;
+                }
+                if (row.length > 4 && row[1].equalsIgnoreCase(userName.trim())) {
+                        return row[4];
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "None";
+    }
+
+    public static void youHaveBorrowed(String userName){
         System.out.println("What do you have borrowed");
-        return scanner.nextLine();
+        String bookName = scanner.nextLine();
+        String loanedBooks= borrowedBook(userName);
+        System.out.println("You have borrowed " + loanedBooks);
     }
 
     public static void addBookToUser(String userName, String bookTitle){
